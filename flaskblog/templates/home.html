@@ -4,8 +4,7 @@
       <div class="row">
         <div class="col-md-9">
 		{% for post in posts.items %}
-        <article class="content-section">
-        	<div class="media">
+        <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ firebase_storage.prof_pic(post.author.image_file) }}" alt="user image">
             <!--url_for('static', filename='profile_pics/' + post.author.image_file)-->
           <div class="media-body">
@@ -14,9 +13,8 @@
               <small class="text-muted">Posted on {{ post.date_posted.strftime('%d-%m-%Y') }}</small>
             </div>
             <h2><a class="article-title text-break" href="{{ url_for('posts.post', post_id=post.id) }}">{{ post.title }}</a></h2>
-            </div>
-            </div>
             <p class="article-content text-break">{{ post.content | truncate(200) }} <a class="mr-2" href="{{ url_for('posts.post', post_id=post.id) }}">See more</a></p>
+          </div>
         </article>
 		{% endfor %}
 		{% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
